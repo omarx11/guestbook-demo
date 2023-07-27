@@ -8,13 +8,11 @@ import { useEffect, useContext } from "react";
 export default function GuestbookMessages() {
   const { comments, setComments } = useContext(StatementContext);
 
-  const handleComments = async (formData) => {
-    const data = await getMessages();
-    setComments(data);
-  };
-
   useEffect(() => {
-    handleComments();
+    (async () => {
+      const data = await getMessages();
+      setComments(data);
+    })();
   }, []);
 
   return (
