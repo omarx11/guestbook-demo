@@ -1,5 +1,5 @@
 import axios from "axios";
-import { pathNameURL } from "@/app/config/data";
+import { PATHNAME_URL } from "@/app/config/data";
 
 /**
  * Post guestbook messages
@@ -7,7 +7,7 @@ import { pathNameURL } from "@/app/config/data";
  * @returns An array of messages.
  */
 export async function postMessages(message) {
-  const { data } = await axios.post(`${pathNameURL}/api/guestbook`, {
+  const { data } = await axios.post(`${PATHNAME_URL}/api/guestbook`, {
     data: {
       message: message,
     },
@@ -20,7 +20,7 @@ export async function postMessages(message) {
  * @returns An array of messages.
  */
 export async function getMessages() {
-  const { data } = await axios.get(`${pathNameURL}/api/guestbook`, {
+  const { data } = await axios.get(`${PATHNAME_URL}/api/guestbook`, {
     headers: {
       "Content-Type": "application/json",
     },
