@@ -11,14 +11,17 @@ export default function FormData() {
   const [text, setText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [wordLimit, setWordLimit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { setComments } = useContext(StatementContext);
 
   const handleSubmit = async (e) => {
     setText("");
+    setIsLoading(true);
     if (session && session.user) {
       const data = await postMessages(text);
       setComments((prev) => [data, ...prev]);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -66,9 +69,28 @@ export default function FormData() {
             aria-label="Post Comment"
             disabled={isTyping}
             onClick={handleSubmit}
-            className="rounded-md bg-sky-800 px-2 py-1 text-base duration-100 hover:bg-sky-900 disabled:cursor-default disabled:select-none disabled:opacity-60"
+            className="flex items-center gap-1 rounded-md bg-sky-800 px-2 py-1 text-base duration-100 hover:bg-sky-900 disabled:cursor-default disabled:select-none disabled:opacity-60"
           >
             SEND
+            {isLoading && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="animate-spin"
+              >
+                <g fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 19a7 7 0 1 0 0-14a7 7 0 0 0 0 14Zm0 3c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10Z"
+                    clip-rule="evenodd"
+                    opacity=".2"
+                  />
+                  <path d="M2 12C2 6.477 6.477 2 12 2v3a7 7 0 0 0-7 7H2Z" />
+                </g>
+              </svg>
+            )}
           </button>
           <button
             aria-label="Sign out"
