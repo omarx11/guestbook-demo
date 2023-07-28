@@ -7,7 +7,7 @@ export async function GET(req, res) {
     process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
     {
       db: { schema: "next_auth" },
-    }
+    },
   );
 
   try {
@@ -32,11 +32,12 @@ export async function POST(req, res) {
     process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
     {
       db: { schema: "next_auth" },
-    }
+    },
   );
 
   const body = {
     name: userData.name,
+    profile: userData.html_url,
     comment: data.message,
     avatar: userData.picture,
   };

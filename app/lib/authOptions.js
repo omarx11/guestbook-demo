@@ -29,10 +29,10 @@ export const authOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
-      return { ...token, ...user };
+    async jwt({ token, user, profile }) {
+      return { ...token, ...user, ...profile };
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user = token;
       return session;
     },

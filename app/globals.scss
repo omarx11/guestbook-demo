@@ -12,6 +12,19 @@
   }
 }
 
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: rgb(139 92 246);
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(196 181 253);
+    border-radius: 8px;
+  }
+}
+
 .fade-out {
   animation-name: fade-out;
   animation-duration: 0.2s;
