@@ -25,7 +25,7 @@ export default function GuestbookMessages() {
               key={index}
               className="flex flex-row items-start gap-3 rounded-lg px-2 py-4 duration-100 hover:bg-neutral-800 hover:drop-shadow-md"
             >
-              {profile !== "NULL" ? (
+              {profile ? (
                 <Link
                   href={profile}
                   target="_blank"
@@ -35,7 +35,7 @@ export default function GuestbookMessages() {
                     src={avatar}
                     width={42}
                     height={42}
-                    className="select-none rounded-full ring-violet-600 duration-150 drag-none hover:ring-4"
+                    className="select-none rounded-full bg-neutral-500 ring-violet-600 duration-150 drag-none hover:ring-4"
                     alt={name + " avatar"}
                   />
                 </Link>
@@ -44,7 +44,7 @@ export default function GuestbookMessages() {
                   src={avatar}
                   width={42}
                   height={42}
-                  className="select-none rounded-full drag-none"
+                  className="select-none rounded-full bg-neutral-500 drag-none"
                   alt={name + " avatar"}
                 />
               )}
