@@ -26,11 +26,7 @@ export default function GuestbookMessages() {
               className="flex flex-row items-start gap-3 rounded-lg px-2 py-4 duration-100 hover:bg-neutral-800 hover:drop-shadow-md"
             >
               {profile ? (
-                <Link
-                  href={profile}
-                  target="_blank"
-                  alt={name + " profile link"}
-                >
+                <Link href={profile} target="_blank">
                   <Image
                     src={avatar}
                     width={42}

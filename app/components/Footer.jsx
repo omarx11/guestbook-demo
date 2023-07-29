@@ -10,7 +10,6 @@ export default function Footer() {
           href="https://omar11.sa/"
           target="_blank"
           className="underline-offset-2 hover:underline"
-          alt="omar11.sa home page"
         >
           Omar Abdulaziz
         </Link>{" "}
@@ -19,7 +18,6 @@ export default function Footer() {
           href="https://nextjs.org/"
           target="_blank"
           className="underline-offset-2 hover:underline"
-          alt="Nextjs home page"
         >
           Next.js
         </Link>
@@ -28,7 +26,6 @@ export default function Footer() {
         href="https://github.com/omarx11/guestbook-demo"
         target="_blank"
         className="flex items-center gap-1 text-stone-500 duration-150 hover:text-stone-300"
-        alt="github guestbook-demo"
       >
         <svg
           stroke="currentColor"
