@@ -18,8 +18,8 @@ export default function FormData() {
     setText("");
     setIsLoading("SEND");
     if (session && session.user) {
-      const data = await postMessages(text);
-      setComments((prev) => [data, ...prev]);
+      const message = await postMessages(text);
+      setComments((prev) => [message, ...prev]);
     }
     setIsLoading("");
   };
@@ -53,6 +53,7 @@ export default function FormData() {
         maxLength={2000}
         placeholder="Leave a message.."
         spellCheck={false}
+        // remove highlight-white/5 scrollbar
         className={
           wordLimit
             ? "highlight-white/5 scrollbar h-36 w-full resize-none rounded-md bg-gray-800 p-2 text-sm caret-rose-500 shadow-sm ring-0 ring-gray-900/10 placeholder:italic focus:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"

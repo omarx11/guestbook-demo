@@ -12,7 +12,7 @@ export async function GET(req, res) {
 
   try {
     const { data, error } = await supabase
-      .from("guestbook")
+      .from("guestbook_demo")
       .select()
       .order("created_at", { ascending: false });
 
@@ -44,7 +44,7 @@ export async function POST(req, res) {
 
   try {
     const { data, error } = await supabase
-      .from("guestbook")
+      .from("guestbook_demo")
       .insert(body)
       .select()
       .single();

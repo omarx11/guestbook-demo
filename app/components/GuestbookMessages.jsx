@@ -17,7 +17,7 @@ export default function GuestbookMessages() {
   }, []);
 
   return (
-    <ul className="fade-in mt-4 w-full border-t-[16px] border-double border-neutral-800 px-2 pt-2">
+    <ul className="fade-in mt-4 w-full border-t-[16px] border-double border-neutral-800 px-2 pt-8">
       {comments ? (
         comments.map(
           ({ name, profile, comment, avatar, created_at }, index) => (
