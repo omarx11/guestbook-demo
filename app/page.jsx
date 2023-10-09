@@ -7,7 +7,10 @@ export default function HomePage() {
   return (
     <main className="m-auto mt-10 flex max-w-3xl flex-col items-center md:mt-16">
       <div className="mx-2 mb-2 text-center">
-        <h1 className="pb-4 text-5xl font-bold md:text-6xl">Guestbook</h1>
+        <h1 className="pb-4 text-5xl font-bold md:text-6xl">
+          Guestbook
+          <span className="text-base"> Demo</span>
+        </h1>
         <p className="text-sm text-gray-300 md:text-base">
           Hey There!, This is a simple guestbook project that was made using the
           latest technologies such as{" "}
