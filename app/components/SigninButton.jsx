@@ -6,7 +6,7 @@ export default function SigninButton() {
   const [isLoading, setIsLoading] = useState("");
 
   return (
-    <div className="flex w-11/12 flex-row flex-wrap items-center justify-center gap-4 rounded-md bg-neutral-800 py-4 text-center">
+    <div className="flex w-11/12 flex-row flex-wrap items-center justify-center gap-4 rounded-md bg-neutral-800/60 py-4 text-center">
       <p>Sign In with:</p>
       <button
         aria-label="Sign in with Github"
@@ -88,7 +88,7 @@ export default function SigninButton() {
           </svg>
         )}
       </button>
-      <p className="flex items-center gap-2 text-sm text-gray-300">
+      <p className="flex items-center gap-2 text-sm text-neutral-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -101,7 +101,7 @@ export default function SigninButton() {
             d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 5h2v6H9V5zm0 8h2v2H9v-2z"
           />
         </svg>
-        your login information only used to display your name, avatar.
+        Your login information only used to display your name, avatar.
       </p>
     </div>
   );
