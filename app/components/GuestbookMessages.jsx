@@ -20,7 +20,7 @@ export default function GuestbookMessages() {
 
   return (
     <>
-      <div className="-mt-4 mb-2 flex w-full items-end justify-between">
+      <div className="mb-2 flex w-full items-end justify-between">
         <p className="ml-1 text-neutral-200">
           {comments ? (
             comments.length
@@ -45,7 +45,7 @@ export default function GuestbookMessages() {
           )}{" "}
           - Comments
         </p>
-        <div className="flex gap-2 rounded-md bg-neutral-800 p-1">
+        <div className="flex gap-2 rounded-md bg-neutral-800 p-1 text-sm">
           <button
             className="rounded-md px-2 py-1 hover:bg-neutral-700 disabled:bg-neutral-600"
             disabled={!isNewest}

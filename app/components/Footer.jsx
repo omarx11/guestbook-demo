@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="my-8 flex w-full items-center justify-between rounded-md bg-neutral-900 p-2">
+    <div className="my-8 flex w-full items-center justify-between rounded-md bg-neutral-900 px-4 py-2">
       <p className="select-none text-xs text-stone-500">
         {new Date().getFullYear()} ©{" "}
         <Link
@@ -19,7 +19,7 @@ export default function Footer() {
           target="_blank"
           className="underline-offset-2 hover:underline"
         >
-          Next.js
+          NEXT.js
         </Link>
       </p>
       <Link
