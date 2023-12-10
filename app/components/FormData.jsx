@@ -3,79 +3,85 @@ import Image from "next/image";
 import { StatementContext } from "@/app/context/statement";
 import { signOut, useSession } from "next-auth/react";
 import { useState, useEffect, useContext } from "react";
-import { postMessages } from "@/app/lib/guestbook";
+import { postComment } from "@/app/lib/fetchRequest";
 import SigninButton from "./SigninButton";
+import { cn } from "../lib/utils";
 
 export default function FormData() {
   const { data: session, status } = useSession();
-  const [text, setText] = useState("");
+  const [commentText, setCommentText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [wordLimit, setWordLimit] = useState(false);
   const [isLoading, setIsLoading] = useState("");
-  const { setComments } = useContext(StatementContext);
+  const { setComments, loadingComment, setLoadingComment } =
+    useContext(StatementContext);
 
   const handleSubmit = async (e) => {
-    setText("");
+    setLoadingComment(true);
+    setCommentText("");
     setIsLoading("SEND");
     if (session && session.user) {
-      const message = await postMessages(text);
+      const message = await postComment(commentText);
       setComments((prev) => [message, ...prev]);
     }
     setIsLoading("");
+    setLoadingComment(false);
   };
 
   useEffect(() => {
-    text.length >= 2000 ? setWordLimit(true) : setWordLimit(false);
-    text === "" ? setIsTyping(true) : setIsTyping(false);
-  }, [text]);
+    commentText.length >= 2000 ? setWordLimit(true) : setWordLimit(false);
+    commentText === "" ? setIsTyping(true) : setIsTyping(false);
+  }, [commentText]);
 
   if (status === "loading")
     return (
-      <span className="h-24 w-96 animate-pulse rounded-md bg-neutral-800"></span>
+      <span className="my-14 h-[116px] w-[28rem] animate-pulse rounded-md bg-neutral-900"></span>
     );
 
   return status === "authenticated" ? (
-    <div className="mx-4 w-full md:w-2/3">
-      <div className="flex select-none items-center gap-2">
+    <div className="my-8 w-full max-w-lg">
+      <div className="mb-2 flex select-none items-end gap-2">
         <Image
           src={session.user.image}
-          width={26}
-          height={26}
-          className="mb-2 rounded-full drag-none"
+          width={32}
+          height={32}
+          className="h-[26px] w-[26px] rounded-full bg-neutral-800 drag-none"
           alt="user-avatar"
         />
-        <p className="text-sm text-gray-500">type as {session.user.name}</p>
+        <p className="text-sm text-neutral-500">
+          Type as - {session.user.name}
+        </p>
       </div>
       <textarea
-        name="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        name="commentText"
+        value={commentText}
+        onChange={(e) => setCommentText(e.target.value)}
         maxLength={2000}
-        placeholder="Leave a message.."
+        placeholder="Leave a comment.."
         spellCheck={false}
-        // remove highlight-white/5 scrollbar
-        className={
-          wordLimit
-            ? "highlight-white/5 scrollbar h-36 w-full resize-none rounded-md bg-gray-800 p-2 text-sm caret-rose-500 shadow-sm ring-0 ring-gray-900/10 placeholder:italic focus:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
-            : "highlight-white/5 scrollbar h-36 w-full resize-none rounded-md bg-gray-800 p-2 text-sm caret-violet-500 shadow-sm ring-0 ring-gray-900/10 placeholder:italic focus:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500"
-        }
+        className={cn(
+          "h-36 w-full resize-none rounded-md border-4 border-neutral-800 bg-neutral-900 p-2 text-lg text-neutral-50 shadow-sm outline-0 ring-4 ring-neutral-700 duration-300 placeholder:text-sm placeholder:italic focus:bg-neutral-950",
+          {
+            "caret-rose-500 focus:ring-rose-800": wordLimit,
+            "caret-sky-500 focus:ring-sky-600": !wordLimit,
+          },
+        )}
       />
       <div className="flex flex-wrap justify-between">
         <span
-          className={
-            wordLimit
-              ? "select-none text-sm text-rose-500"
-              : "select-none text-sm text-gray-500"
-          }
+          className={cn("select-none text-sm", {
+            "font-bold text-rose-600": wordLimit,
+            "text-neutral-500": !wordLimit,
+          })}
         >
-          {text.length} / 2000
+          {commentText.length} / 2000
         </span>
-        <div className="flex gap-4">
+        <div className="mt-0.5 flex gap-2 text-neutral-50">
           <button
             aria-label="Post Comment"
             disabled={isTyping}
             onClick={handleSubmit}
-            className="flex items-center gap-1 rounded-md bg-sky-800 px-2 py-1 text-base duration-100 hover:bg-sky-900 disabled:cursor-default disabled:select-none disabled:opacity-60"
+            className="flex items-center gap-1 rounded-md bg-sky-800 px-2 py-1 text-base duration-100 hover:bg-sky-900 disabled:cursor-not-allowed disabled:select-none disabled:opacity-60"
           >
             SEND
             {isLoading === "SEND" && (
@@ -106,7 +112,7 @@ export default function FormData() {
             }}
             className="flex items-center gap-1 rounded-md bg-rose-800 px-2 py-1 text-base duration-100 hover:bg-rose-900"
           >
-            Sign Out
+            Sign-Out
             {isLoading === "SignOut" && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"

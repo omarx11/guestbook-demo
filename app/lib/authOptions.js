@@ -11,13 +11,6 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID ?? "",
@@ -25,16 +18,23 @@ export const authOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    strategy: "jwt",
-  },
   callbacks: {
-    async jwt({ token, user, profile }) {
-      return { ...token, ...user, ...profile };
-    },
-    async session({ session, token }) {
-      session.user = token;
+    session: async ({ session, token }) => {
+      if (session?.user) {
+        session.user.id = token.uid;
+        session.user.url = token.html_url;
+      }
       return session;
     },
+    jwt: async ({ user, token, profile }) => {
+      if (user) {
+        token.uid = user.id;
+        user.url = profile.html_url;
+      }
+      return { ...token, ...profile };
+    },
+  },
+  session: {
+    strategy: "jwt",
   },
 };

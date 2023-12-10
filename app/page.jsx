@@ -5,9 +5,9 @@ import Footer from "./components/Footer";
 
 export default function HomePage() {
   return (
-    <main className="m-auto mt-10 flex max-w-3xl flex-col items-center md:mt-16">
+    <main className="m-auto mt-8 max-w-3xl px-2 sm:px-0 md:mt-12">
       <Header />
-      <div className="flex h-60 w-full items-center justify-center">
+      <div className="flex w-full items-center justify-center">
         <FormData />
       </div>
       <GuestbookMessages />
