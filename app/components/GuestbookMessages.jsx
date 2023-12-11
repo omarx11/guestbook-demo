@@ -20,6 +20,7 @@ export default function GuestbookMessages() {
   const { data: session, status } = useSession();
   const [isNewest, setIsNewest] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [startAnimate, setStartAnimate] = useState(true);
   const commentsPerPage = 6; // Adjust this based on your needs
 
   const totalComments = comments?.length;
@@ -36,6 +37,9 @@ export default function GuestbookMessages() {
     (async () => {
       const data = await getAllComments();
       setComments(data);
+      setTimeout(() => {
+        setStartAnimate(false);
+      }, 500);
     })();
   }, []);
 
@@ -105,11 +109,15 @@ export default function GuestbookMessages() {
           </button>
         </div>
       </div>
-      <ul className="fade-in my-4 flex w-full flex-col">
+      <ul
+        className={cn("my-4 flex min-h-max w-full flex-col sm:min-h-[480px]", {
+          "fade-in": startAnimate,
+        })}
+      >
         {comments ? (
-          currentComments.map((user, i) => (
+          currentComments.map((user) => (
             <li
-              key={i}
+              key={user.cid}
               className="flex flex-row items-start gap-3 rounded-md px-1 py-4 duration-100 hover:bg-neutral-800 md:px-2"
             >
               {user.profile ? (
@@ -118,7 +126,7 @@ export default function GuestbookMessages() {
                     src={user.avatar}
                     width={48}
                     height={48}
-                    className="max-h-[42px] min-h-[42px] min-w-[42px] max-w-[42px] select-none rounded-full bg-neutral-800 ring-4 ring-sky-600/50 duration-150 drag-none"
+                    className="drag-none max-h-[42px] min-h-[42px] min-w-[42px] max-w-[42px] select-none rounded-full bg-neutral-800 ring-4 ring-sky-600/50 duration-150"
                     alt=""
                   />
                 </Link>
@@ -127,7 +135,7 @@ export default function GuestbookMessages() {
                   src={user.avatar}
                   width={48}
                   height={48}
-                  className="max-h-[42px] min-h-[42px] min-w-[42px] max-w-[42px] select-none rounded-full bg-neutral-800 ring-4 ring-neutral-600 drag-none"
+                  className="drag-none max-h-[42px] min-h-[42px] min-w-[42px] max-w-[42px] select-none rounded-full bg-neutral-800 ring-4 ring-neutral-600"
                   alt=""
                 />
               )}
