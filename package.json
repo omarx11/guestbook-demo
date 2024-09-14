@@ -1,6 +1,6 @@
 {
   "name": "guestbook-demo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": false,
   "scripts": {
     "dev": "next dev",
@@ -9,25 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth/supabase-adapter": "^0.1.10",
-    "@supabase/supabase-js": "^2.39.0",
-    "@tanstack/react-query": "^5.13.4",
-    "autoprefixer": "^10.4.16",
-    "clsx": "^2.0.0",
-    "eslint": "^8.55.0",
-    "eslint-config-next": "^14.0.4",
-    "nanoid": "^5.0.4",
-    "next": "^14.0.4",
-    "next-auth": "^4.24.5",
-    "postcss": "^8.4.32",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.1.0",
-    "tailwindcss": "^3.3.6"
+    "@radix-ui/react-alert-dialog": "^1.1.1",
+    "@supabase/ssr": "^0.5.1",
+    "@supabase/supabase-js": "^2.45.4",
+    "@tanstack/react-query": "^5.56.2",
+    "clsx": "^2.1.1",
+    "nanoid": "^5.0.7",
+    "next": "^14.2.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
-    "prettier": "^3.1.0",
-    "prettier-plugin-tailwindcss": "^0.5.9",
-    "sass": "^1.69.5"
+    "@types/react": "18.3.5",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.11",
+    "postcss": "^8.4.45",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "sass": "^1.78.0",
+    "tailwindcss": "^3.4.11"
   }
 }

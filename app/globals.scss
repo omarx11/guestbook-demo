@@ -3,23 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
-}
-
-.scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.scrollbar::-webkit-scrollbar-track {
-  background-color: rgb(139 92 246);
-}
-.scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgb(196 181 253);
-  border-radius: 8px;
+  color-scheme: dark;
 }
 
 @layer utilities {
@@ -28,37 +12,13 @@
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
-    user-drag: none;
   }
 
-  .fade-out {
-    animation-name: fade-out;
-    animation-duration: 0.2s;
-    animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(0.17, 0.64, 0.59, 0.96);
-  }
   .fade-in > * {
     animation-name: fade-in;
-    animation-duration: 0.3s;
+    animation-duration: 250ms;
     animation-fill-mode: both;
     animation-timing-function: cubic-bezier(0.14, 0.64, 0.51, 0.94);
-  }
-
-  @for $i from 1 through 24 {
-    .fade-in > :nth-child(#{$i}) {
-      animation-delay: #{$i / 20}s;
-    }
-  }
-
-  @keyframes fade-out {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(0.5rem);
-    }
   }
   @keyframes fade-in {
     from {
@@ -68,6 +28,12 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @for $i from 1 through 24 {
+    .fade-in > :nth-child(#{$i}) {
+      animation-delay: #{$i / 25}s;
     }
   }
 }
